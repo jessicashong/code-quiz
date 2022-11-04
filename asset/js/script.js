@@ -1,33 +1,35 @@
 //title page
+var timer = document.getElementById('timer');
+var highScores = document.getElementById('highscores');
 var title = document.querySelector('.title');
-var questionsContainer = document.querySelector('.content');
 var directions = document.querySelector('.directions');
-//var buttonContainer = document.querySelector('.button-container');
-var choiceContainer = document.querySelector('.choice-container');
-var startBtn = document.createElement('button');
+var startBtn = document.getElementById('start');
+
+var questionsContainer = document.getElementById('question-container');
+var btnContainer = document.getElementById('btn-container');
+var question = document.getElementById('question');
+var choice1 = document.getElementById('choice1');
+var choice2 = document.getElementById('choice2');
+var choice3 = document.getElementById('choice3');
+var choice4 = document.getElementById('choice4');
+// var choiceContainer = document.querySelector('.choice-container');
+
+var score = 0;
 
 
 title.textContent = 'Code Quiz';
 directions.textContent = 'Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by 10 seconds!';
-startBtn.textContent = "START";
 title.setAttribute('style', 'font-size:40px; text-align:center;');
 directions.setAttribute('style', 'font-size:20px; text-align:center');
-
-directions.appendChild(startBtn);
-
 startBtn.setAttribute('style', 'margin:20px');
+startBtn.addEventListener('click', startGame());
 
-startBtn.addEventListener('click', function(){
+function startGame(){
     //change id names and remove p tag
-    title.textContent = '';
-    title.removeAttribute('style', 'font-size:40px; text-align:center;');
-    title.classList.replace('title', 'questions');
-    directions.remove();    
-    startBtn.remove();
-
-    questionsPage();
-    console.log(questionBank[0])
-});
+    startBtn.classList.add('hide');
+    title.classList.add('hide');
+    directions.classList.add('hide');    
+};
 
 //create arrays with question and answer obejcts
 var questionBank = [
@@ -46,13 +48,22 @@ function questionsPage(){
     var questions = document.querySelector('.questions');
     var ulEl = document.createElement('ul');
     choiceContainer.appendChild(ulEl);
-
+    
+    // for (var i = 0; i < questionBank.length; i++){
+    //     question.textContent = questionBank[i].question;
+    //     var response = 
+    //     //if (question ==
+    // }
     questions.textContent = questionBank[0].question;
     questions.setAttribute('style', 'font-size:30px; text-align:center');
     // for (var i = 0; i < questionBank[].answers.length; i++){
     //     var choice = document.createElement('button');
     //     choice.textContent = questionBank[i].answers[n];
     // }
+}
+
+function selectAnswer(){
+
 }
 // var questions = document.querySelector('.questions');
 // var ulEl = document.createElement('ul');
@@ -73,9 +84,6 @@ function questionsPage(){
 // ulEl.appendChild(choice4);
 
 
-// for (var i = 0; i < questionBank.length; i++){
-//     var question = document.querySelector('.questions');
-//     question.textContent = questionBank[i].question;
 
 
 //event listener correct answer
