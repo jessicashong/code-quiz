@@ -9,6 +9,7 @@ var startBtn = document.getElementById('start');
 var questionsContainer = document.getElementById('question-container');
 var btnContainer = document.getElementById('btn-container');
 var question = document.getElementById('question');
+var answerCheck = document.getElementById('answer-check');
 // var choiceBtn = document.querySelector('.choice-btn');
 // var choice2 = document.getElementById('choice2');
 // var choice3 = document.getElementById('choice3');
@@ -17,8 +18,9 @@ var question = document.getElementById('question');
 
 var score = 0;
 var index = 0;
+var timeLeft = 15;
 
-
+//start page
 title.textContent = 'Code Quiz';
 directions.textContent = 'Try to answer the following code-related questions within the time limit. Keep in mind that incorrect answers will penalize your score/time by 10 seconds!';
 title.setAttribute('style', 'font-size:45px; text-align:center;');
@@ -39,7 +41,6 @@ function startGame(){
 };
 
 function startTimer(){
-    var timeLeft = 5;
     var timeInterval = setInterval(function(){
         if (timeLeft > 0) {
             timer.innerHTML = 'Timer: ' + timeLeft;
@@ -48,10 +49,11 @@ function startTimer(){
             timer.innerHTML = 'Timer: 0';
             clearInterval(timeInterval);
 
-            displayScore();
+            finalScore();
         }
     }, 1000)
 }
+
 //create arrays with question and answer obejcts
 var questionBank = [
     {
@@ -85,7 +87,7 @@ var questionBank = [
         question: 'what is my favorite food?',
         answers: [
             { text: 'poke', correct: true},
-            { text: 'sushi', correct: false},
+            { text: 'fried rice', correct: false},
             { text: 'tacos', correct: false},
             { text: 'hamburger', correct: false}
         ]
@@ -94,46 +96,60 @@ var questionBank = [
 
 //function that creates ul tag and buttons
 function questionsStart(){
+    question.setAttribute('style', 'font-size:30px;');
     question.innerText = questionBank[index].question;
     
     for (var i = 0; i < questionBank[index].answers.length; i++){
         var choice = document.createElement('button');
         choice.classList.add('choice-btn');
         choice.textContent = questionBank[index].answers[i].text;
-        btnContainer.appendChild(choice);
+        choice.setAttribute('value', questionBank[index].answers[i].correct)
+        btnContainer.appendChild(choice); 
+    }    
+    
+    var answerBtns = document.querySelectorAll('.choice-btn');
+    for (var i = 0; i < answerBtns.length; i++){
+        answerBtns[i].addEventListener('click', function(event) {
+            if (event.target.value === 'true'){
+                answerCheck.setAttribute('style', 'font-size:28px; font-style:italic')
+                answerCheck.innerHTML = 'That is correct!';
+                setTimeout(() => {
+                    nextQuestion();
+                }, 1500);
+                score += 1;
+            } else {
+                answerCheck.setAttribute('style', 'font-size:28px; font-style:italic')
+                answerCheck.innerHTML = 'That is incorrect!';
+                timeLeft -= 5;
+                setTimeout(() => {
+                    nextQuestion();
+                }, 1500);
+            }
+        })
     }
-    if (answer.correct) {
-        choice.dataset.correct = answer.correct;
-    }
-    index ++;
+    index++    
 }
 
 function nextQuestion(){
+    var answerBtns = document.querySelectorAll('.choice-btn');
+    answerCheck.innerHTML = '';
     question.innerText = questionBank[index].question;
+    for (var i = 0; i < questionBank[index].answers.length; i++){
+        var choice = answerBtns[i];
+        choice.textContent = questionBank[index].answers[i].text;
+        choice.setAttribute('value', questionBank[index].answers[i].correct)
+    }   
+    
+    index ++;
+}
+
+function finalScore(){
     
 }
 
-function displayScore(){
+function storeHighScores(){
     
 }
-// var questions = document.querySelector('.questions');
-// var ulEl = document.createElement('ul');
-// var choice1 = document.createElement('button');
-// var choice2 = document.createElement('button');
-// var choice3 = document.createElement('button');
-// var choice4 = document.createElement('button');
-
-// choice1.textContent = questionBank[0].answer1;
-// choice2.textContent = questionBank[0].answer1;
-// choice3.textContent = questionBank[0].answer1;
-
-
-// buttonContainer.appendChild(ulEl);
-// ulEl.appendChild(choice1);
-// ulEl.appendChild(choice2);
-// ulEl.appendChild(choice3);
-// ulEl.appendChild(choice4);
-
 
 
 
