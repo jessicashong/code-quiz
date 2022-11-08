@@ -13,7 +13,7 @@ var highScores = document.getElementById('highscore-container');
 
 var score = 0;
 var index = 0;
-var timeLeft = 120;
+var timeLeft = 75;
 
 //start page
 title.textContent = 'Code Quiz';
