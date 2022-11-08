@@ -63,30 +63,30 @@ var questionBank = [
         ]
     },
     {
-        question: 'how old am i?',
+        question: 'Arrays in JavaScript can be used to store _______.',
         answers: [
-            { text: '12', correct: false},
-            { text: '27', correct: true},
-            { text: '22', correct: false},
-            { text: '37', correct: false}
+            { text: 'numbers and strings', correct: false},
+            { text: 'other arrays', correct: false},
+            { text: 'booleans', correct: false},
+            { text: 'all of the above', correct: true}
         ]
     },
     {
-        question: 'what is my favorite color?',
+        question: 'String values must be enclosed within ______ when being assigned to variables.',
         answers: [
-            { text: 'blue', correct: false},
-            { text: 'red', correct: false},
-            { text: 'green', correct: false},
-            { text: 'yellow', correct: true}
+            { text: 'commas', correct: false},
+            { text: 'curly brackets', correct: false},
+            { text: 'quotes', correct: true},
+            { text: 'parentheses', correct: false}
         ]
     },
     {
-        question: 'what is my favorite food?',
+        question: 'A very useful tool used during development and debugging for printing content to the debugger is: ',
         answers: [
-            { text: 'poke', correct: true},
-            { text: 'fried rice', correct: false},
-            { text: 'tacos', correct: false},
-            { text: 'hamburger', correct: false}
+            { text: 'JavaScript', correct: false},
+            { text: 'terminal/bash', correct: false},
+            { text: 'for loops', correct: false},
+            { text: 'console log', correct: true}
         ]
     }
 ]
