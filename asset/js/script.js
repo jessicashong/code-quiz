@@ -208,7 +208,7 @@ function highScorePage(){
     var lastScore = JSON.parse(localStorage.getItem('storeScore'));
     scoreBoard.setAttribute('style', 'font-size:24px;');
     if (lastScore !== null) {
-        document.querySelector('.score-board').textContent = '1. ' + lastScore.initials;
+        document.querySelector('.score-board').textContent = '1. ' + lastScore.initials + ' - ' + score;
     }
 
 }
